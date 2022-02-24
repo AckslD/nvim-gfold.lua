@@ -1,0 +1,71 @@
+#!/usr/bin/env python
+import re
+import sys
+from dataclasses import dataclass
+from dataclasses import asdict
+from enum import Enum
+from enum import auto
+import json
+
+PATTERN = re.compile(r"""(\w*) ~ (\S*)""")
+
+
+class Status(Enum):
+    clean = auto()
+    unclean = auto()
+    bare = auto()
+    unpushed = auto()
+
+
+@dataclass
+class Repo:
+    name: str
+    path: str
+    status: Status
+    branch: str
+    remote: str
+    user: str
+
+    def asdict(self):
+        dct = asdict(self)
+        dct['status'] = self.status.name
+        return dct
+
+
+COLOR_CODES = [
+    '\x1b[0m',
+    '\x1b[1m',
+    '\x1b[32m',
+    '\x1b[33m',
+    '\x1b[38;2;128;128;128m',
+]
+
+
+def strip_colors(text: str):
+    for color_code in COLOR_CODES:
+        text = text.replace(color_code, '')
+    return text
+
+
+lines = list(sys.stdin)
+repos = []
+for i in range(len(lines) // 4):
+    repo_lines = lines[4 * i: 4 * (i + 1)]
+    repo_lines = list(map(strip_colors, repo_lines))
+    name, path = repo_lines[0].split('~')
+    name = name.strip()
+    path = path.strip()
+    status, branch = repo_lines[1].strip().split(' ')
+    branch = branch.strip('()')
+    remote = repo_lines[2].strip()
+    user = repo_lines[3].strip()
+    repos.append(Repo(
+        name=name,
+        path=path,
+        status=Status[status],
+        branch=branch,
+        remote=remote,
+        user=user,
+    ))
+
+print(json.dumps(list(map(lambda r: r.asdict(), repos))))
