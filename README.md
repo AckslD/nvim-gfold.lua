@@ -14,6 +14,13 @@ TODO:
 * A function to get a summary that can be used in statuslines, eg [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim).
 
 ## Pictures
+### Picker
+
+![gscreenshot_2022-02-25-095346](https://user-images.githubusercontent.com/23341710/155687823-947535c8-e271-4e8f-a924-be2b7bc29708.png)
+
+### Statusline
+
+![gscreenshot_2022-02-25-091146](https://user-images.githubusercontent.com/23341710/155687845-1df01712-894d-4d91-bc52-912cfdbbd2ec.png)
 
 ## Install
 ```lua
