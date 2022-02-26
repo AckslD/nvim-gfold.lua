@@ -19,7 +19,7 @@ TODO:
 
 ### Statusline
 
-![gscreenshot_2022-02-25-091146](https://user-images.githubusercontent.com/23341710/155687845-1df01712-894d-4d91-bc52-912cfdbbd2ec.png)
+![gscreenshot_2022-02-26-140848](https://user-images.githubusercontent.com/23341710/155844731-13a82e4e-f74e-47a9-a677-7c696c731169.png)
 
 ## Install
 ```lua
