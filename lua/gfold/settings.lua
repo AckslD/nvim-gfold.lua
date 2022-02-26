@@ -1,15 +1,9 @@
 local actions = require('gfold.actions')
 
 return {
-  -- command to use to produce output
-  -- needs to conform to the expected json output from gfold
-  -- !! TODO needs to be updated
-  cmd = 'gfold | ~/dev/vim-plugins/nvim-gfold.lua/gfold2json',
-
   -- base directory to look for repos
   -- defaults to home
-  -- !! TODO needs to be updated
-  cwd = '/home/axel/dev',
+  cwd = vim.fn.getenv('HOME'),
 
   -- What symbols to use, for both picker and status
   status_symbols = {

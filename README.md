@@ -1,11 +1,5 @@
 # nvim-gfold.lua
 
-❗WARNING WORK IN PROGRESS ❗:
-
-TODO:
-- [ ] Fix paths, currently default paths use my home path.
-- [ ] Use native `json` output from `gfold` (https://github.com/nickgerace/gfold/issues/176)
-
 `nvim` plugin for [gfold](https://github.com/nickgerace/gfold) currently providing:
 * A picker to change `cwd`.
   This uses `vim.ui.select`.
