@@ -9,7 +9,7 @@ local summary = {
 }
 
 local get_summary = function()
-  return settings.format_summary(summary)
+  return summary
 end
 
 local function update_summary()
@@ -22,7 +22,7 @@ local function update_summary()
       summary[repo.status] = current + 1
     end
     -- delay the next call by some amount
-    vim.fn.timer_start(settings.update_delay, update_summary)
+    vim.fn.timer_start(settings.status.update_delay, update_summary)
   end)
 end
 

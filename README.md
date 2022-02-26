@@ -5,7 +5,6 @@
 TODO:
 - [ ] Fix paths, currently default paths use my home path.
 - [ ] Use native `json` output from `gfold` (https://github.com/nickgerace/gfold/issues/176)
-- [ ] Figure out how to properly define colors. Probably some of the formatting used for lualine should not be part of this repo.
 
 `nvim` plugin for [gfold](https://github.com/nickgerace/gfold) currently providing:
 * A picker to change `cwd`.
@@ -44,7 +43,8 @@ To pick a repo:
 ```
 
 ### Statusline
-For example using `lualine`:
+#### Lualine
+To use `lualine` you can simply do eg:
 ```lua
 require('lualine').setup({
   ...
@@ -52,7 +52,7 @@ require('lualine').setup({
     ...
     lualine_x = {
       ...
-      require('gfold').get_summary,
+      'gfold',
       ...
     },
     ...
@@ -60,3 +60,19 @@ require('lualine').setup({
   ...
 })
 ```
+
+#### Others
+For other statuslines you can call `require('gfold').get_summary` which returns a table of the form:
+```lua
+{
+  unclean = <int>,
+  clean = <int>,
+  bare = <int>,
+  unpushed = <int>,
+}
+```
+which you can use to format a summary to your liking.
+
+NOTE that `get_summary` does not update the current summary (ie does not trigger `gfold`), it just looks up the
+current known information. This means `get_summary` is a quick function and you can easily call it often.
+Instead, `nvim-gfold` will continuously update this information in the background, see [settings](https://github.com/AckslD/nvim-gfold.lua/tree/main/lua/gfold/settings.lua) for more information.

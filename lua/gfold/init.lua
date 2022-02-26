@@ -7,7 +7,7 @@ end
 
 local setup = function(user_opts)
   update_settings(user_opts)
-  if settings.update_summary then
+  if settings.status.enable then
     require('gfold.status').update_summary()
   end
 end

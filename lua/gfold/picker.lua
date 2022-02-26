@@ -5,9 +5,9 @@ local pick_repo = function()
   get_repos(function(repos)
     vim.ui.select(repos, {
       prompt = 'gfold',
-      format_item = settings.format_item,
+      format_item = settings.picker.format_item,
       kind = 'gfold',
-    }, settings.on_select)
+    }, settings.picker.on_select)
   end)
 end
 
