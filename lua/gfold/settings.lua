@@ -1,5 +1,3 @@
-local actions = require('gfold.actions')
-
 return {
   -- base directory to look for repos
   -- defaults to home
@@ -29,7 +27,7 @@ return {
 
     -- what to do when selecting a repo
     -- by default changes cwd
-    on_select = actions.change_cwd,
+    on_select = require('gfold.actions').change_cwd,
   },
 
   -- settings specific to the status(line)
