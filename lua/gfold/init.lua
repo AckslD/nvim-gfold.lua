@@ -2,7 +2,7 @@ local settings = require('gfold.settings')
 local utils = require('gfold.utils')
 
 local update_settings = function(user_opts)
-  utils.recursive_tbl_update(settings, user_opts)
+  setmetatable(settings, { __index = vim.tbl_extend('force', settings.defaults, user_opts) })
 end
 
 local setup = function(user_opts)

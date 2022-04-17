@@ -1,4 +1,6 @@
-return {
+local settings = {}
+
+settings.defaults = {
   -- base directory to look for repos
   -- defaults to home
   cwd = vim.fn.getenv('HOME'),
@@ -62,3 +64,7 @@ return {
     },
   },
 }
+
+setmetatable(settings, { __index = settings.defaults })
+
+return settings
