@@ -4,7 +4,7 @@ local function recursive_tbl_update(base, new)
   end
   for key, value in pairs(new) do
     if type(base[key]) == 'table' then
-      recursive_tbl_update(value, base[key])
+      recursive_tbl_update(base[key], value)
     else
       base[key] = value
     end
