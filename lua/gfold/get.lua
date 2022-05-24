@@ -18,6 +18,12 @@ local get_repos = function(callback)
       local repos = parse_output(data)
       callback(repos)
     end,
+    on_stderr = function(_, data, _)
+      local text = table.concat(data, '\n')
+      if text ~= '' then
+        vim.notify_once('Error: ' .. text, vim.log.levels.WARN)
+      end
+    end,
     stdout_buffered = true,
   })
 end
