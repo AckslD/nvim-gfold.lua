@@ -12,8 +12,8 @@ local setup = function(user_opts)
   end
 end
 
-local pick_repo = function()
-  return require('gfold.picker').pick_repo()
+local pick_repo = function(condition)
+  return require('gfold.picker').pick_repo(condition)
 end
 
 local get_summary = function()
