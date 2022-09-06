@@ -102,6 +102,20 @@ To pick a repo:
 :lua require('gfold').pick_repo()
 ```
 
+Optionally you can filter the repos you want to show by including a condition callback.
+For example:
+```lua
+require('gfold').pick_repo(function(repo)
+  return repo.status ~= 'clean'
+end)
+```
+which would only include non-clean repos in the picker. `repo` is a table with the keys:
+* `status`
+* `path`
+* `remote`
+* `user`
+
+
 ### Statusline
 #### Lualine
 To use `lualine` you can simply do eg:
