@@ -130,6 +130,19 @@ To pick a repo:
 <
 
 
+Optionally you can filter the repos you want to show by including a condition
+callback. For example:
+
+>
+    require('gfold').pick_repo(function(repo)
+      return repo.status ~= 'clean'
+    end)
+<
+
+
+which would only include non-clean repos in the picker. `repo` is a table with
+the keys: * `status` * `path` * `remote` * `user`
+
 STATUSLINE ~
 
                                                                *gfold-Lualine*
