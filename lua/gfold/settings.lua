@@ -3,6 +3,9 @@ return {
   -- defaults to home
   cwd = vim.fn.getenv('HOME'),
 
+  -- if true, no error is shown if the call to gfold fails
+  no_error = false,
+
   -- What symbols to use, for both picker and status
   status_symbols = {
     clean = '✔',

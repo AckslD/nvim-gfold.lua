@@ -1,12 +1,16 @@
 local settings = require('gfold.settings')
 
 local parse_output = function(data)
-  local ret = vim.fn.json_decode(table.concat(data, '\n'))
-  for i, v in ipairs(ret) do
-    ret[i].status = v.status:lower()
-    ret[i].path = v.parent .. '/' .. v.name
-    ret[i].remote = v.url
-    ret[i].user = v.email
+  local raw = table.concat(data, '\n')
+  if raw == '' then
+    return {}
+  end
+  local ret = vim.fn.json_decode(raw)
+  for _, v in ipairs(ret) do
+    v.status = v.status:lower()
+    v.path = v.parent .. '/' .. v.name
+    v.remote = v.url
+    v.user = v.email
   end
   return ret
 end
@@ -32,9 +36,12 @@ local get_repos = function(callback, condition)
       callback(repos)
     end,
     on_stderr = function(_, data, _)
+      if settings.no_error then
+        return
+      end
       local text = table.concat(data, '\n')
       if text ~= '' then
-        vim.notify_once('Error: ' .. text, vim.log.levels.WARN)
+        vim.notify_once('Error (gfold.nvim): ' .. text, vim.log.levels.WARN)
       end
     end,
     stdout_buffered = true,
