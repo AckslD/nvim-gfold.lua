@@ -1,6 +1,8 @@
 local change_cwd = function(repo, idx)
   if repo then
-    vim.cmd('cd ' .. repo.path)
+    vim.schedule(function()
+      vim.cmd('lcd ' .. repo.path)
+    end)
   end
 end
 
